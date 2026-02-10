@@ -1,0 +1,444 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Remember Who - Your relationships. Your data. Your device.</title>
+    <meta name="description" content="A privacy-first personal CRM that helps you remember everyone you meet. On-device AI, encrypted storage, no cloud required.">
+    <meta property="og:title" content="Remember Who">
+    <meta property="og:description" content="Your relationships. Your data. Your device.">
+    <meta property="og:image" content="icon.png">
+    <link rel="icon" type="image/png" href="icon.png">
+    <style>
+        :root {
+            --bg: #0a1210;
+            --surface: #111f1a;
+            --border: #1a2f25;
+            --text: #e8ede9;
+            --text-muted: #94a89b;
+            --green: #6abf69;
+            --teal: #3ba5a1;
+            --gradient-start: #6abf69;
+            --gradient-end: #3ba5a1;
+            --accent-glow: rgba(74, 180, 130, 0.12);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            background: var(--bg);
+            color: var(--text);
+            line-height: 1.6;
+        }
+
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 0 24px;
+        }
+
+        /* Hero */
+        .hero {
+            text-align: center;
+            padding: 80px 0 60px;
+            background: radial-gradient(ellipse at 50% 0%, rgba(74, 180, 130, 0.06) 0%, transparent 70%);
+        }
+
+        .hero .app-icon {
+            width: 100px;
+            height: 100px;
+            border-radius: 22px;
+            margin-bottom: 28px;
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+        }
+
+        .hero h1 {
+            font-size: 2.5rem;
+            font-weight: 700;
+            margin-bottom: 8px;
+            letter-spacing: -0.02em;
+            background: linear-gradient(135deg, var(--gradient-start), var(--gradient-end));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .hero .tagline {
+            font-size: 1.2rem;
+            color: var(--text-muted);
+            margin-bottom: 28px;
+        }
+
+        .hero .cta-row {
+            display: flex;
+            gap: 12px;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+
+        .btn {
+            display: inline-block;
+            padding: 12px 28px;
+            border-radius: 8px;
+            font-size: 0.95rem;
+            font-weight: 600;
+            text-decoration: none;
+            transition: all 0.2s;
+        }
+
+        .btn-primary {
+            background: linear-gradient(135deg, var(--gradient-start), var(--gradient-end));
+            color: #0a1210;
+        }
+
+        .btn-primary:hover {
+            box-shadow: 0 4px 20px rgba(74, 180, 130, 0.3);
+            transform: translateY(-1px);
+        }
+
+        .btn-secondary {
+            background: var(--surface);
+            color: var(--text);
+            border: 1px solid var(--border);
+        }
+
+        .btn-secondary:hover {
+            border-color: var(--teal);
+        }
+
+        /* Problem */
+        .problem {
+            text-align: center;
+            padding: 60px 0;
+            border-top: 1px solid var(--border);
+        }
+
+        .problem h2 {
+            font-size: 1.4rem;
+            margin-bottom: 20px;
+            font-weight: 600;
+        }
+
+        .problem p {
+            color: var(--text-muted);
+            max-width: 560px;
+            margin: 0 auto;
+            font-size: 1.05rem;
+        }
+
+        /* Features */
+        .features {
+            padding: 40px 0 60px;
+            border-top: 1px solid var(--border);
+        }
+
+        .features h2 {
+            text-align: center;
+            font-size: 1.3rem;
+            margin-bottom: 36px;
+            color: var(--text-muted);
+            font-weight: 400;
+        }
+
+        .feature-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 20px;
+        }
+
+        @media (max-width: 640px) {
+            .feature-grid {
+                grid-template-columns: 1fr;
+            }
+            .hero h1 {
+                font-size: 1.8rem;
+            }
+        }
+
+        .feature-card {
+            background: var(--surface);
+            border: 1px solid var(--border);
+            border-radius: 12px;
+            padding: 24px;
+            transition: border-color 0.2s, box-shadow 0.2s;
+        }
+
+        .feature-card:hover {
+            border-color: var(--teal);
+            box-shadow: 0 0 20px var(--accent-glow);
+        }
+
+        .feature-card h3 {
+            font-size: 1.05rem;
+            margin-bottom: 6px;
+        }
+
+        .feature-card p {
+            font-size: 0.9rem;
+            color: var(--text-muted);
+        }
+
+        .feature-icon {
+            font-size: 1.4rem;
+            margin-bottom: 10px;
+            display: block;
+        }
+
+        /* Privacy */
+        .privacy {
+            padding: 60px 0;
+            border-top: 1px solid var(--border);
+        }
+
+        .privacy h2 {
+            text-align: center;
+            font-size: 1.3rem;
+            margin-bottom: 12px;
+            font-weight: 600;
+        }
+
+        .privacy .subtitle {
+            text-align: center;
+            color: var(--text-muted);
+            margin-bottom: 32px;
+            font-size: 0.95rem;
+        }
+
+        .privacy-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr 1fr;
+            gap: 20px;
+            text-align: center;
+        }
+
+        @media (max-width: 640px) {
+            .privacy-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        .privacy-item h3 {
+            font-size: 0.95rem;
+            margin-bottom: 4px;
+            color: var(--green);
+        }
+
+        .privacy-item p {
+            font-size: 0.85rem;
+            color: var(--text-muted);
+        }
+
+        /* Use Cases */
+        .usecases {
+            padding: 60px 0;
+            border-top: 1px solid var(--border);
+        }
+
+        .usecases h2 {
+            text-align: center;
+            font-size: 1.3rem;
+            margin-bottom: 32px;
+            color: var(--text-muted);
+            font-weight: 400;
+        }
+
+        .usecase-list {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 16px;
+            max-width: 640px;
+            margin: 0 auto;
+        }
+
+        @media (max-width: 640px) {
+            .usecase-list {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        .usecase {
+            background: var(--surface);
+            border: 1px solid var(--border);
+            border-radius: 10px;
+            padding: 16px 20px;
+            font-size: 0.9rem;
+            color: var(--text-muted);
+        }
+
+        .usecase strong {
+            color: var(--text);
+            display: block;
+            margin-bottom: 2px;
+        }
+
+        /* CTA */
+        .cta {
+            text-align: center;
+            padding: 60px 0;
+            border-top: 1px solid var(--border);
+        }
+
+        .cta h2 {
+            font-size: 1.5rem;
+            margin-bottom: 12px;
+        }
+
+        .cta p {
+            color: var(--text-muted);
+            margin-bottom: 24px;
+        }
+
+        .coming-soon {
+            display: inline-block;
+            padding: 10px 24px;
+            border-radius: 8px;
+            font-size: 0.85rem;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            background: var(--accent-glow);
+            color: var(--teal);
+            border: 1px solid rgba(59, 165, 161, 0.25);
+        }
+
+        /* Footer */
+        footer {
+            text-align: center;
+            padding: 40px 0;
+            border-top: 1px solid var(--border);
+            color: var(--text-muted);
+            font-size: 0.85rem;
+        }
+
+        footer a {
+            color: var(--teal);
+            text-decoration: none;
+        }
+
+        footer a:hover {
+            text-decoration: underline;
+        }
+
+        footer .parent {
+            margin-top: 6px;
+            font-size: 0.8rem;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <section class="hero">
+            <img src="icon.png" alt="Remember Who app icon" class="app-icon">
+            <h1>Remember Who</h1>
+            <p class="tagline">Your relationships. Your data. Your device.</p>
+            <div class="cta-row">
+                <span class="coming-soon">Coming Soon to iOS & Android</span>
+            </div>
+        </section>
+
+        <section class="problem">
+            <h2>You've met them before. You just can't remember.</h2>
+            <p>The neighbor at school pickup. The person from last week's meetup. The client you spoke to six months ago. You know you've met — but the name, the context, the last conversation? Gone. Remember Who fixes that.</p>
+        </section>
+
+        <section class="features">
+            <h2>How it works</h2>
+            <div class="feature-grid">
+                <div class="feature-card">
+                    <span class="feature-icon">&#128100;</span>
+                    <h3>Add Anyone Instantly</h3>
+                    <p>Snap a business card, scan a QR code, or just type a name. Add context, notes, and how you met — in seconds.</p>
+                </div>
+
+                <div class="feature-card">
+                    <span class="feature-icon">&#127908;</span>
+                    <h3>Call Assist</h3>
+                    <p>On-device AI transcription before and during calls. See who they are and what you last talked about — right when the phone rings.</p>
+                </div>
+
+                <div class="feature-card">
+                    <span class="feature-icon">&#128205;</span>
+                    <h3>Geo-Reminders</h3>
+                    <p>Get a reminder when you're near someone you know. Walking into the school? Here's every parent you've met there.</p>
+                </div>
+
+                <div class="feature-card">
+                    <span class="feature-icon">&#128337;</span>
+                    <h3>Interaction Timeline</h3>
+                    <p>Every call, meeting, and note — organized by person. Never ask "when did we last talk?" again.</p>
+                </div>
+
+                <div class="feature-card">
+                    <span class="feature-icon">&#128247;</span>
+                    <h3>Business Card OCR</h3>
+                    <p>Point your camera at a business card. AI reads it, creates the contact, and files it — all on your device.</p>
+                </div>
+
+                <div class="feature-card">
+                    <span class="feature-icon">&#128274;</span>
+                    <h3>Encrypted Everything</h3>
+                    <p>AES-256 field-level encryption. Your contacts, notes, and conversations never leave your phone unencrypted.</p>
+                </div>
+            </div>
+        </section>
+
+        <section class="privacy">
+            <h2>Privacy isn't a setting. It's the architecture.</h2>
+            <p class="subtitle">Most contacts apps upload your data to the cloud. We don't.</p>
+            <div class="privacy-grid">
+                <div class="privacy-item">
+                    <h3>On-Device AI</h3>
+                    <p>Whisper transcription runs locally. Your conversations never hit a server.</p>
+                </div>
+                <div class="privacy-item">
+                    <h3>No Account Required</h3>
+                    <p>Use the app without signing up. Your data exists only on your phone.</p>
+                </div>
+                <div class="privacy-item">
+                    <h3>Optional Encrypted Backup</h3>
+                    <p>If you want cloud backup, it's end-to-end encrypted. We can't read it even if we wanted to.</p>
+                </div>
+            </div>
+        </section>
+
+        <section class="usecases">
+            <h2>Built for people who...</h2>
+            <div class="usecase-list">
+                <div class="usecase">
+                    <strong>Forget names</strong>
+                    You've met them three times. It's too late to ask again.
+                </div>
+                <div class="usecase">
+                    <strong>Network for work</strong>
+                    Conferences, meetups, sales calls — too many faces to track.
+                </div>
+                <div class="usecase">
+                    <strong>Have ADHD</strong>
+                    Working memory is short. Your relationship history shouldn't be.
+                </div>
+                <div class="usecase">
+                    <strong>Value their privacy</strong>
+                    Your contacts are your business. Literally nobody else's.
+                </div>
+            </div>
+        </section>
+
+        <section class="cta">
+            <h2>Stop forgetting. Start remembering.</h2>
+            <p>Remember Who launches soon on iOS and Android.</p>
+            <span class="coming-soon">Coming Soon</span>
+        </section>
+
+        <footer>
+            <p>&copy; 2026 <a href="https://lostpinescreative.com">Lost Pines Creative LLC</a></p>
+            <p class="parent">A privacy-first product from Lost Pines Creative</p>
+        </footer>
+    </div>
+
+</body>
+</html>
